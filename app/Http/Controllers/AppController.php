@@ -39,12 +39,12 @@ class AppController extends Controller
             'content' => 'required'
         ]);
 
-        Mail::to(config('mail.from.address'))->send(new ContactMail(
-            $request->name,
-            $request->email,
-            $request->sujet,
-            $request->content
-        ));
+        // Mail::to(config('mail.from.address'))->send(new ContactMail(
+        //     $request->name,
+        //     $request->email,
+        //     $request->sujet,
+        //     $request->content
+        // ));
         return back();
     }
 }

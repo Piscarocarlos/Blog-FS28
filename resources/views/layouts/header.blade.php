@@ -9,9 +9,22 @@
             <div class="collapse navbar-collapse" id="navbarID">
                 <div class="navbar-nav">
                     <a class="nav-link active" aria-current="page" href="{{ route('home_page') }}">Accueil</a>
-                    <a class="nav-link" aria-current="page" href="{{ route('category.index') }}">Catégories</a>
-                    <a class="nav-link" aria-current="page" href="{{ route('post.index') }}">Articles</a>
+
+                    @auth
+                        @if(Auth::user()->user_type === "admin")
+                            <a class="nav-link" aria-current="page" href="{{ route('category.index') }}">Catégories</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('post.index') }}">Articles</a>
+                        @endif
+                    @endauth
+
                     <a class="nav-link" aria-current="page" href="#">Contact</a>
+                    @guest
+                        <a class="nav-link" aria-current="page" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('register') }}">Register</a>
+                    @else
+                        <a class="nav-link" aria-current="page" href="{{ route('logout') }}">Logout</a>
+                        <a class="nav-link" aria-current="page" href="#">Dashboard</a>
+                    @endguest
                 </div>
             </div>
         </div>
